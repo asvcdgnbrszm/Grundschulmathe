@@ -1,15 +1,19 @@
 var count = 0
 var lost = false
-var level = 1;
+var level = 1
 
 const resultObj = {
     1: function(a,b) {return a+b},
-    2: function(a,b) {if (a>b){return a-b}else{return b-a} }
+    2: function(a,b) {if (a>b){return a-b}else{return b-a} },
+    3: function(a,b) {return a*b},
+    4: function(a,b) {return a*b/a}
 }
 
 const promptObj = {
     1: function(a,b) {return `Wieviel ist ${a} + ${b}?`},
     2: function(a,b) {if (a>b){return `Wieviel ist ${a} - ${b}?`}else{return `Wieviel ist ${b} - ${a}?`}},
+    3: function(a,b) {return `Wieviel ist ${a} * ${b}?`},
+    4: function(a,b) {return `Wieviel ist ${a*b} / ${a}?`}
 }
 
 
@@ -30,7 +34,7 @@ while (!lost){
         }
     }
     
-    if (level < 2) {
+    if (level < 4) {
         if (count >= 4) {
             level++
             count = 0
