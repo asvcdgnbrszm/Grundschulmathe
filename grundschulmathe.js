@@ -1,4 +1,4 @@
-var count = 1;
+var count = 0
 
 for(let i = 0; i < 5; i++){
 
@@ -8,8 +8,9 @@ for(let i = 0; i < 5; i++){
     var result = prompt(`Wieviel ist ${a} + ${b}?`)
 
     if (parseInt(result, 10) === a + b) {
-        alert(`Richtig! (${count}/5)`)
+        count++
+        alert(`Richtig! (${count}/5 richtig)`)
     } else {
-        alert(`Falsch! (${count}/5)`)
+        alert(`Falsch! (${count}/5 richtig)`)
     }
 }
