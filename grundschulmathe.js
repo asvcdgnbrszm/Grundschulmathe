@@ -2,18 +2,11 @@ var count = 0
 var lost = false
 var level = 1
 
-const resultObj = {
-    1: function(a,b) {return a+b},
-    2: function(a,b) {if (a>b){return a-b}else{return b-a} },
-    3: function(a,b) {return a*b},
-    4: function(a,b) {return a*b/a}
-}
-
-const promptObj = {
-    1: function(a,b) {return `Wieviel ist ${a} + ${b}?`},
-    2: function(a,b) {if (a>b){return `Wieviel ist ${a} - ${b}?`}else{return `Wieviel ist ${b} - ${a}?`}},
-    3: function(a,b) {return `Wieviel ist ${a} * ${b}?`},
-    4: function(a,b) {return `Wieviel ist ${a*b} / ${a}?`}
+const obj = {
+    1: function(a,b) {return [a+b, `Wieviel ist ${a} + ${b}?`]},
+    2: function(a,b) {if (a>b){return [a-b, `Wieviel ist ${a} - ${b}?`]}else{return [b-a, `Wieviel ist ${b} - ${a}?`]} },
+    3: function(a,b) {return [a*b, `Wieviel ist ${a} * ${b}?`]},
+    4: function(a,b) {return [a*b/a, `Wieviel ist ${a*b} / ${a}?`]}
 }
 
 
@@ -24,9 +17,9 @@ while (!lost){
         var a = Math.floor(Math.random() * 20)
         var b = Math.floor(Math.random() * 20)
     
-        var result = prompt(promptObj[level](a,b))
+        var result = prompt(obj[level](a,b)[1])
     
-        if (parseInt(result, 10) === resultObj[level](a,b)) {
+        if (parseInt(result, 10) === obj[level](a,b)[0]) {
             count++
             alert(`Richtig! (${count}/5 richtig)`)
         } else {
@@ -34,7 +27,7 @@ while (!lost){
         }
     }
     
-    if (level < 4) {
+    if (level < Object.keys(obj).length) {
         if (count >= 4) {
             level++
             count = 0
